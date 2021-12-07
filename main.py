@@ -1,7 +1,9 @@
+# Import Statements
 from random import randint
 import enchant
 
 
+# Function to randomly choose a word, weighted based on frequency of word lenghts
 def choose_word():
     random_num = randint(1, 232400)
     if random_num < 50:
@@ -48,19 +50,30 @@ def choose_word():
         return 21
 
 
+# Checks if a word is valid
 def check_word_validity(input_word):
     return d.check(input_word)
 
 
+# Dictionary for checking word validity
 d = enchant.Dict("en_US")
+# List of all english alphabet to make words
 alphabet_list = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
                  "u", "v", "w", "x", "y", "z"]
+# Controller for main loop to find when it hits a valid word
 bad_word = True
+# Main Loop
 while bad_word:
+    # Randomly generates word_length
     word_length = choose_word()
+    # Sets the word equal to blank string
     word = ""
     for i in range(0, word_length):
+        # For each letter in the word, adds a random letter
         word += alphabet_list[randint(0, 25)]
+    # Checks to see if the word is valid
     if check_word_validity(word):
+        # If it is, ends the loop
         bad_word = False
+# Prints the valid word
 print(word)
